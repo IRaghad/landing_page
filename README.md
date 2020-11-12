@@ -1,14 +1,20 @@
 # Landing Page Project
 
-## Table of Contents
+## Table of contents
+* [General info](#general-info)
+* [Languages](#languages)
+* [Steps](#setps)
 
-* [Instructions](#instructions)
+## General info
+The goal of this project is to learn how to manipulate the DOM by using JavaScript
 
-## Instructions
+## Languages
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+html , css and js
 
-To get started, open `js/app.js` and start building out the app's functionality
+# Steps 
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
-# landing_page
+* open the index.html 
+*  add a section to the html 
+*  you will notice that the nav menu add the new section that you just add to the menu
+*  you can navigate and moving between the sections by clicking on the menu.
