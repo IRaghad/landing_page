@@ -1,33 +1,42 @@
 // add element list as GV 
-const ul_list= document.getElementById("navbar__list");
-const sections_list = document.getElementsByTagName("section");
-const link_tag = document.querySelector('a');
-const mainHeading = document.querySelector('h1');
+const ulList= document.getElementById("navbar__list");
+const sectionsList = document.getElementsByTagName("section");
 
 // add dynamic menu sections 
-for (const section of sections_list ) {
-    const li = document.createElement("li");
-    const a = document.createElement("a");
-    a.setAttribute("href",`#${section.id} `);
-    a.setAttribute("class",`menu__link`);
-    // scroll to the specific element 
-    a.appendChild(document.createTextNode(section.id));
-    li.appendChild(a);
-    ul_list.appendChild(li);
-}
-// highlight specific anchor 
-var listener = function() {
-    for (let i = 0; i <  sections_list.length; i++) {
-      let section = sections_list[i];
-      let b_c_r = section.getBoundingClientRect();
-      if (b_c_r.top > 0 && b_c_r.top < window.innerHeight) {
-          section.classList.add('.active');
-          document.querySelector('a').style.backgroundColor = 'red';
-          
-      }
+for (const section of sectionsList ) {
+    const liElement = document.createElement("li");
+    const aElement = document.createElement("a");
+    aElement.setAttribute("class",`menu__link`);
+    aElement.appendChild(document.createTextNode(section.id));
+    liElement.appendChild(aElement);
+    ulList.appendChild(liElement);
+     // scroll to the specific element 
+    liElement.addEventListener('click', function () {
+    const bCRect = section.getBoundingClientRect();
+    const activeLink = window.pageYOffset + bCRect.top ;
+      window.scrollTo({
+        top: activeLink
+      });
+    });
     }
-  };
-  // call listener
-  document.addEventListener('scroll', listener);
-  
 
+  // creat new css class for the active link 
+    var myStyle = (function() {
+      var newStyle = document.createElement("style");
+      newStyle.appendChild(document.createTextNode(""));
+      document.head.appendChild(newStyle);
+      return newStyle;
+  })();
+  myStyle.sheet.insertRule('.active-link{color:red!important; background: rgb(0, 0, 0);}', 0);
+
+// highlight specific anchor 
+const navLink = document.querySelectorAll('.menu__link');
+let highlightLink = function() {
+let i = sectionsList.length;
+while (--i && window.scrollY + 50 < sectionsList[i].offsetTop) {
+ }
+navLink.forEach((link) => link.classList.remove('active-link'));
+navLink[i].classList.add('active-link');
+}
+  // call listener
+  document.addEventListener('scroll', highlightLink, false); 
