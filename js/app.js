@@ -15,6 +15,7 @@ for (const section of sectionsList ) {
     const bCRect = section.getBoundingClientRect();
     const activeLink = window.pageYOffset + bCRect.top ;
       window.scrollTo({
+        behavior: "smooth",
         top: activeLink
       });
     });
@@ -35,8 +36,14 @@ let highlightLink = function() {
 let i = sectionsList.length;
 while (--i && window.scrollY + 50 < sectionsList[i].offsetTop) {
  }
+ const bCRect = sectionsList[i].getBoundingClientRect();
+ if (bCRect.top > 0 && bCRect.top < window.innerHeight) {
+ sectionsList[i].classList.add('active');
 navLink.forEach((link) => link.classList.remove('active-link'));
 navLink[i].classList.add('active-link');
 }
+else {
+  sectionsList[i].classList.remove('active');
+  }}
   // call listener
   document.addEventListener('scroll', highlightLink, false); 
